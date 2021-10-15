@@ -72,11 +72,7 @@
   "peerDependencies": {
     "brick-engine": "^0.11.0"
   },
-  // "husky": {
-  //   "hooks": {
-  //     "pre-push": "npm test"
-  //   }
-  // },
+
   "jest": {
     "moduleNameMapper": {
       "^@/(.*)$": "<rootDir>/$1"
