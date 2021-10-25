@@ -8,6 +8,7 @@
 
 const { MODULE_KEY, WinstonPlugin, defineWinston } = require('../../plugins/winston');
 const { Provider, injectMetadata } = require('brick-engine');
+const { Winston } = require('../../decorators');
 const { transports } = require('winston');
 const faker = require('faker');
 
@@ -79,6 +80,37 @@ describe('plugins/winston', () => {
             debug: 7,
           },
         });
+
+        const res1 = plugin.match(target1);
+        expect(res1).toBeTruthy();
+
+      });
+
+      it('success with decorators', () => {
+
+        const target = () => { };
+        const decorator = Winston({ id: Symbol() });
+        decorator(target);
+
+        const res = plugin.match(target);
+        expect(res).toBeTruthy();
+
+        const target1 = () => { };
+        const decorator1 = Winston({
+          id: Symbol(),
+          level: 'info',
+          levels: {
+            emerg: 0,
+            alert: 1,
+            crit: 2,
+            error: 3,
+            warning: 4,
+            notice: 5,
+            info: 6,
+            debug: 7,
+          },
+        });
+        decorator1(target1);
 
         const res1 = plugin.match(target1);
         expect(res1).toBeTruthy();

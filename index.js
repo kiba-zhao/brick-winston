@@ -8,8 +8,10 @@
 
 const { winstonSetup } = require('./lib/utils');
 const { WinstonPlugin, defineWinston } = require('./plugins/winston');
+const { Winston } = require('./decorators');
 
 module.exports = {
   winstonSetup,
   WinstonPlugin, defineWinston,
+  Winston,
 };
